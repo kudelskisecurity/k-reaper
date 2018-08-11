@@ -470,7 +470,7 @@ class PublicKeyPacket(Packet, AlgoLookup):
             oid_length = self.data[offset]
             offset += 1
             oid = self.data[offset:offset + oid_length]
-            self.curve = ", ".join(hex(b) for b in oid) # TODO
+            self.curve = ", ".join(hex(b) for b in oid)
             self.curve = self.curve_name_for_oid(oid)
             offset += oid_length
             offset_before_point = offset
@@ -543,7 +543,7 @@ class PublicKeyPacket(Packet, AlgoLookup):
             key_size = c.key_size
             x = None
             y = None
-            # TODO actually decode (x,y) from point
+            # actually decode (x,y) from point
 
             return x, y, key_size
 
@@ -675,7 +675,7 @@ class SecretKeyPacket(PublicKeyPacket):
                 offset += 8
                 # ignore count
                 offset += 1
-                # TODO: parse and store count ?
+                # parse and store count ?
 
             elif 100 <= s2k_type_id <= 110:
                 # GnuPG string-to-key
@@ -714,7 +714,7 @@ class SecretKeyPacket(PublicKeyPacket):
                     self.serial_number = get_hex_data(self.data, offset + 1,
                             serial_len)
                 else:
-                    # TODO implement other modes?
+                    # implement other modes?
                     raise PgpdumpException(
                             "Unsupported GnuPG S2K extension, encountered mode %d" % mode)
             else:
@@ -730,8 +730,8 @@ class SecretKeyPacket(PublicKeyPacket):
                 self.s2k_iv = self.data[offset:offset + s2k_iv_len]
                 offset += s2k_iv_len
 
-            # TODO decrypt key data
-            # TODO parse checksum
+            # decrypt key data
+            # parse checksum
             return offset
 
     def parse_private_key_material(self, offset):
