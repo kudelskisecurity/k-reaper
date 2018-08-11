@@ -23,3 +23,8 @@ Configuration file must be placed in `/etc/k-reaper/config.json` and must contai
 
 }
 ```
+
+# Usage
+
+More details to follow.
+
